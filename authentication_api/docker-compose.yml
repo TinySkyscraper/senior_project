@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "443:8000"
+    depends_on: [db]
+    command: ["python", "app.py"]
+ 
+  db:
+      image: postgres:latest
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: example

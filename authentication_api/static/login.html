@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+    <h1 style="margin-bottom: 15vh;">CryptoLock Configuration Login</h1>
+    <form class="w-50">
+        <div class="form-group">
+            <label for="inputUsername">Email address</label>
+            <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
+                placeholder="Enter Username">
+            <small id="emailHelp" class="form-text text-muted"> This is for information technology ADMINS only. If
+                you are not an admin and attempt to login, your intent will be assumed as malicious and corrective
+                action will be taken
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-primary" id="submitButton">Submit</button>
+    </form>
+    <script>user_field = document.getElementById("inputUsername");
+        pass_field = document.getElementById("inputPassword");
+        submit_button = document.getElementById("submitButton");
+        console.log("IM HERE!!!");
+
+        submit_button.addEventListener("click", submit_form);
+
+        function submit_form() {
+            username = user_field.value;
+            password = pass_field.value;
+
+            data = {
+                "username": username,
+                "password": password
+            };
+
+            url = "https://" + window.location.hostname + ":50002/login";
+
+            send_login_post(url, data);
+        }
+
+        async function send_login_post(url, data) {
+            console.log("about to send")
+            response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            console.log("finished request")
+            window.location.replace("https://" + window.location.hostname + ":50002/home")
+        }</script>
+</body>
+
+</html>

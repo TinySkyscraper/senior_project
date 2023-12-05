@@ -1,0 +1,6 @@
+FROM python:latest
+WORKDIR /server
+COPY . .
+RUN pip install -r requirements.txt
+EXPOSE 50002
+CMD [ "python3", "auth_server.py" ]
