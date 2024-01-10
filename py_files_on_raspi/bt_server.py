@@ -99,8 +99,8 @@ def start_server():                                             # Starts Bluetoo
                     if verify(pubkey, signature, rand_bytes):           # Verify identity
                                                                         #----------------
 
-                        hardware.unlock()                   # Unlock door and notify mobile  /
-                        client_sock.send(b"VERIFIED")       # device of verification        /
+                        client_sock.send(b"VERIFIED")       # Unlock door and notify mobile 
+                        hardware.unlock()                   # device of authentication
                                                             #------------------------------
                         client_sock.close()
                         continue
